@@ -1,0 +1,1265 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style>
+<title>Fondo ENLAZA</title>
+<meta name="description" content="Fondo ENLAZA">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,600&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet">
+</head><body>
+<style>
+/* ─── TOKENS ─────────────────────────────────────────────────────────
+   Layout: full-bleed alternating dark/light bands, sticky nav, one scroll
+──────────────────────────────────────────────────────────────────── */
+:root {
+  --ink:     #0F1F12;
+  --forest:  #2D6A4F;
+  --fleaf:   #3D8A6A;
+  --earth:   #B5621F;
+  --stone:   #7A7468;
+  --paper:   #F2EFE8;
+  --snow:    #FDFCF9;
+  --border:  rgba(15,31,18,.1);
+  --disp:    'Cormorant Garamond', Georgia, serif;
+  --body:    'DM Sans', system-ui, sans-serif;
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --ink:    #E2DDD5;
+    --forest: #5FAD89;
+    --fleaf:  #7AC4A3;
+    --earth:  #D9834A;
+    --stone:  #9A9489;
+    --paper:  #121A13;
+    --snow:   #191F1A;
+    --border: rgba(226,221,213,.1);
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --ink:    #E2DDD5;
+  --forest: #5FAD89;
+  --fleaf:  #7AC4A3;
+  --earth:  #D9834A;
+  --stone:  #9A9489;
+  --paper:  #121A13;
+  --snow:   #191F1A;
+  --border: rgba(226,221,213,.1);
+  color-scheme: dark;
+}
+
+/* ─── BASE ──────────────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; }
+body {
+  font-family: var(--body);
+  background: var(--paper);
+  color: var(--ink);
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+img { max-width: 100%; }
+
+/* ─── BILINGUAL ──────────────────────────────────────────────────── */
+html.lang-en .es { display: none !important; }
+html:not(.lang-en) .en { display: none !important; }
+
+/* ─── NAV ────────────────────────────────────────────────────────── */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0 0 auto;
+  height: env(safe-area-inset-top, 0px);
+  background: #081210;
+  z-index: 200;
+}
+nav {
+  position: fixed;
+  top: env(safe-area-inset-top, 0px);
+  left: 0; right: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding-block: .9rem;
+  padding-left: max(28px, env(safe-area-inset-left, 0px));
+  padding-right: max(28px, env(safe-area-inset-right, 0px));
+  transition: background .25s, backdrop-filter .25s, box-shadow .25s;
+}
+nav.scrolled {
+  background: rgba(8,18,16,.92);
+  backdrop-filter: blur(12px);
+  box-shadow: 0 1px 0 rgba(255,255,255,.07);
+}
+.nav-logo {
+  font-family: var(--disp);
+  font-size: 1.35rem;
+  font-weight: 600;
+  color: #fff;
+  text-decoration: none;
+  letter-spacing: .06em;
+  flex-shrink: 0;
+}
+.nav-links {
+  display: flex;
+  gap: 1.75rem;
+  align-items: center;
+  list-style: none;
+}
+.nav-links a {
+  font-size: .72rem;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,.6);
+  text-decoration: none;
+  transition: color .15s;
+}
+.nav-links a:hover { color: #fff; }
+.lang-toggle {
+  display: flex;
+  border: 1px solid rgba(255,255,255,.25);
+  border-radius: 4px;
+  overflow: hidden;
+}
+.lang-toggle button {
+  background: none; border: none;
+  padding: .28rem .6rem;
+  font: 500 .7rem var(--body);
+  letter-spacing: .06em;
+  color: rgba(255,255,255,.5);
+  cursor: pointer;
+  transition: background .15s, color .15s;
+}
+.lang-toggle button.active {
+  background: rgba(255,255,255,.18);
+  color: #fff;
+}
+.nav-burger {
+  display: none;
+  background: none; border: none;
+  cursor: pointer; color: #fff;
+  padding: .25rem; font-size: 1.3rem;
+}
+@media (max-width: 820px) {
+  .nav-links { display: none; flex-direction: column; position: absolute; top: 100%; left: 0; right: 0; background: rgba(8,18,16,.97); padding: 1.5rem max(28px, env(safe-area-inset-left, 0px)); gap: 1.2rem; border-top: 1px solid rgba(255,255,255,.08); }
+  .nav-links.open { display: flex; }
+  .nav-burger { display: block; }
+}
+
+/* ─── SHARED LAYOUT ─────────────────────────────────────────────── */
+.inner {
+  max-width: 1100px;
+  margin-inline: auto;
+  padding-left: max(28px, env(safe-area-inset-left, 0px));
+  padding-right: max(28px, env(safe-area-inset-right, 0px));
+}
+section { padding-block: 6rem; }
+.eyebrow {
+  font-size: .68rem;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  font-weight: 500;
+  margin-bottom: .9rem;
+  color: var(--forest);
+}
+.eyebrow.light { color: #7AC4A3; }
+h2 {
+  font-family: var(--disp);
+  font-size: clamp(2rem, 4vw, 3.25rem);
+  font-weight: 400;
+  line-height: 1.08;
+  text-wrap: balance;
+  margin-bottom: 1.25rem;
+}
+.lead {
+  font-size: 1.05rem;
+  color: var(--stone);
+  max-width: 620px;
+  line-height: 1.65;
+}
+.btn {
+  display: inline-block;
+  padding: .8rem 1.9rem;
+  border-radius: 4px;
+  font: 500 .85rem var(--body);
+  letter-spacing: .04em;
+  text-decoration: none;
+  cursor: pointer;
+  border: none;
+  transition: background .18s, border-color .18s, color .18s;
+}
+.btn-solid { background: var(--forest); color: #fff; }
+.btn-solid:hover { background: var(--fleaf); }
+.btn-outline { background: transparent; color: rgba(255,255,255,.75); border: 1px solid rgba(255,255,255,.28); }
+.btn-outline:hover { border-color: rgba(255,255,255,.65); color: #fff; }
+
+/* ─── HERO ───────────────────────────────────────────────────────── */
+.hero {
+  position: relative;
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  background: #081210;
+  overflow: hidden;
+}
+.hero-mountains {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 58%;
+}
+.hero-stars {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(1px 1px at 12% 18%, rgba(255,255,255,.55) 0%, transparent 100%),
+    radial-gradient(1px 1px at 34% 8%, rgba(255,255,255,.4) 0%, transparent 100%),
+    radial-gradient(1px 1px at 56% 22%, rgba(255,255,255,.5) 0%, transparent 100%),
+    radial-gradient(1px 1px at 71% 12%, rgba(255,255,255,.35) 0%, transparent 100%),
+    radial-gradient(1px 1px at 88% 7%, rgba(255,255,255,.45) 0%, transparent 100%),
+    radial-gradient(1px 1px at 22% 32%, rgba(255,255,255,.3) 0%, transparent 100%),
+    radial-gradient(1px 1px at 45% 15%, rgba(255,255,255,.4) 0%, transparent 100%),
+    radial-gradient(1px 1px at 78% 28%, rgba(255,255,255,.35) 0%, transparent 100%),
+    radial-gradient(1px 1px at 6% 42%, rgba(255,255,255,.25) 0%, transparent 100%),
+    radial-gradient(1px 1px at 92% 35%, rgba(255,255,255,.3) 0%, transparent 100%),
+    linear-gradient(180deg, #04100A 0%, #081210 40%, #0D1C13 100%);
+}
+.hero-content {
+  position: relative;
+  z-index: 2;
+  padding-left: max(48px, env(safe-area-inset-left, 0px));
+  padding-right: max(48px, env(safe-area-inset-right, 0px));
+  padding-bottom: 9vh;
+  max-width: 950px;
+}
+.hero-eyebrow {
+  font-size: .7rem;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  color: #5FAD89;
+  margin-bottom: 1.5rem;
+  font-weight: 500;
+}
+.hero h1 {
+  font-family: var(--disp);
+  font-size: clamp(3rem, 7.5vw, 6.2rem);
+  font-weight: 400;
+  line-height: 1.03;
+  color: #F0EDE6;
+  text-wrap: balance;
+  margin-bottom: 1.5rem;
+}
+.hero h1 em { font-style: italic; color: #A8D5B8; }
+.hero-sub {
+  font-size: clamp(.95rem, 1.4vw, 1.15rem);
+  color: rgba(240,237,230,.55);
+  max-width: 500px;
+  line-height: 1.65;
+  margin-bottom: 2.5rem;
+}
+.hero-ctas { display: flex; gap: 1rem; flex-wrap: wrap; }
+.hero-line {
+  position: absolute;
+  right: max(48px, env(safe-area-inset-right, 0px));
+  bottom: 3rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: .4rem;
+  color: rgba(255,255,255,.25);
+  font-size: .65rem;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+}
+.hero-line-bar {
+  width: 1px; height: 50px;
+  background: linear-gradient(to bottom, transparent, rgba(255,255,255,.25));
+  animation: pulse 2s ease-in-out infinite;
+}
+@keyframes pulse { 0%,100%{opacity:.35}50%{opacity:.8} }
+@media (max-width: 600px) {
+  .hero-content { padding-left: max(24px, env(safe-area-inset-left, 0px)); padding-right: max(24px, env(safe-area-inset-right, 0px)); }
+  .hero-line { display: none; }
+}
+
+/* ─── PROBLEMA ───────────────────────────────────────────────────── */
+.prob-grid {
+  display: grid;
+  grid-template-columns: repeat(3,1fr);
+  gap: 2px;
+  margin-top: 3rem;
+  border-radius: 10px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+}
+@media (max-width: 680px) { .prob-grid { grid-template-columns: 1fr; } }
+.prob-card {
+  background: var(--snow);
+  padding: 2.5rem 1.75rem;
+}
+.prob-card .big {
+  font-family: var(--disp);
+  font-size: 3.75rem;
+  font-weight: 300;
+  color: var(--forest);
+  line-height: 1;
+  margin-bottom: .45rem;
+}
+.prob-card h3 { font-family: var(--disp); font-size: 1.2rem; font-weight: 500; margin-bottom: .6rem; }
+.prob-card p { font-size: .88rem; color: var(--stone); line-height: 1.58; }
+
+/* ─── MODELO ─────────────────────────────────────────────────────── */
+.modelo { background: #081210; color: #E2DDD5; }
+.modelo h2 { color: #E2DDD5; }
+.modelo .lead { color: rgba(226,221,213,.55); }
+.innovation-box {
+  margin-top: 2.75rem;
+  max-width: 680px;
+  padding: 1.75rem 2rem;
+  border-left: 3px solid #5FAD89;
+  background: rgba(95,173,137,.07);
+  border-radius: 0 8px 8px 0;
+}
+.innovation-box .tag {
+  font-size: .67rem; letter-spacing: .18em; text-transform: uppercase;
+  color: #7AC4A3; font-weight: 500; margin-bottom: .6rem;
+}
+.innovation-box p { font-size: .93rem; color: rgba(226,221,213,.75); line-height: 1.62; }
+.innovation-box strong { color: #A8D5B8; }
+.diag-scroll { margin-top: 3.5rem; overflow-x: auto; padding-bottom: .5rem; }
+.diag-scroll svg { min-width: 740px; width: 100%; display: block; }
+.diag-note { font-size: .74rem; color: rgba(226,221,213,.3); font-style: italic; margin-top: .5rem; }
+
+/* ─── AYSÉN ──────────────────────────────────────────────────────── */
+.aysen-grid {
+  display: grid;
+  grid-template-columns: 1fr 420px;
+  gap: 4rem;
+  align-items: start;
+  margin-top: 3rem;
+}
+@media (max-width: 860px) { .aysen-grid { grid-template-columns: 1fr; gap: 2.5rem; } }
+.aysen-desc { font-size: .9rem; color: var(--stone); line-height: 1.65; margin-bottom: 1.75rem; }
+.sites-list { display: flex; flex-direction: column; gap: .8rem; margin-bottom: 2rem; }
+.site-row {
+  display: flex; gap: .9rem; align-items: flex-start;
+  background: var(--snow); border: 1px solid var(--border);
+  border-radius: 7px; padding: 1.1rem 1.25rem;
+}
+.site-dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; margin-top: .32rem; }
+.site-dot.priority { background: var(--earth); }
+.site-dot.secondary { background: var(--forest); }
+.site-row h4 { font-size: .93rem; font-weight: 500; margin-bottom: .18rem; }
+.site-row p { font-size: .8rem; color: var(--stone); }
+.manihuales-box {
+  padding: 1.4rem 1.5rem;
+  background: var(--snow);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--earth);
+  border-radius: 0 8px 8px 0;
+}
+.manihuales-box .tag { font-size: .67rem; letter-spacing: .15em; text-transform: uppercase; color: var(--earth); font-weight: 500; margin-bottom: .45rem; }
+.manihuales-box p { font-size: .86rem; color: var(--stone); line-height: 1.58; }
+.map-wrap { position: relative; }
+.map-svg { width: 100%; display: block; }
+.map-legend { display: flex; gap: 1.25rem; flex-wrap: wrap; margin-top: .9rem; font-size: .76rem; color: var(--stone); }
+.leg { display: flex; align-items: center; gap: .45rem; }
+.leg-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+.leg-dash { width: 18px; height: 0; border-top: 2px dashed rgba(181,98,31,.45); flex-shrink: 0; }
+
+/* ─── IMPACTO ────────────────────────────────────────────────────── */
+.impacto { background: var(--snow); }
+.metrics-grid {
+  display: grid;
+  grid-template-columns: repeat(4,1fr);
+  gap: 1.25rem;
+  margin-top: 3rem;
+}
+@media (max-width: 880px) { .metrics-grid { grid-template-columns: repeat(2,1fr); } }
+@media (max-width: 460px) { .metrics-grid { grid-template-columns: 1fr; } }
+.metric {
+  padding: 2rem 1.5rem;
+  border-top: 3px solid var(--forest);
+  background: var(--paper);
+  border-radius: 8px;
+}
+.metric .num {
+  font-family: var(--disp);
+  font-size: 2.75rem;
+  font-weight: 400;
+  color: var(--forest);
+  line-height: 1;
+  margin-bottom: .35rem;
+  font-variant-numeric: tabular-nums;
+}
+.metric .unit { font-size: .73rem; color: var(--stone); letter-spacing: .04em; }
+.metric .lbl { font-size: .84rem; font-weight: 500; margin-top: .55rem; }
+.disclaimer { margin-top: 2rem; font-size: .77rem; color: var(--stone); font-style: italic; padding-left: .75rem; border-left: 2px solid var(--border); }
+
+/* ─── EXPANSIÓN ──────────────────────────────────────────────────── */
+.exp-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin-top: 3rem;
+}
+@media (max-width: 680px) { .exp-grid { grid-template-columns: 1fr; } }
+.exp-card {
+  background: var(--snow);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 2.25rem;
+  position: relative;
+  overflow: hidden;
+}
+.exp-card::after {
+  content: '';
+  position: absolute; top: 0; left: 0; right: 0; height: 3px;
+  background: var(--earth);
+}
+.exp-card .country { font-size: .68rem; letter-spacing: .18em; text-transform: uppercase; color: var(--earth); font-weight: 500; margin-bottom: .6rem; }
+.exp-card h3 { font-family: var(--disp); font-size: 1.45rem; font-weight: 500; margin-bottom: .7rem; }
+.exp-card p { font-size: .88rem; color: var(--stone); line-height: 1.58; }
+.exp-tags { display: flex; gap: .5rem; flex-wrap: wrap; margin-top: 1.25rem; }
+.tag-pill { display: inline-block; padding: .28rem .75rem; background: rgba(45,106,79,.1); color: var(--forest); border-radius: 20px; font-size: .73rem; font-weight: 500; }
+
+/* ─── PARTICIPAR ─────────────────────────────────────────────────── */
+.participar { background: #081210; color: #E2DDD5; }
+.participar h2 { color: #E2DDD5; }
+.participar .lead { color: rgba(226,221,213,.55); }
+.partner-grid {
+  display: grid;
+  grid-template-columns: repeat(3,1fr);
+  gap: 1.25rem;
+  margin-top: 3rem;
+}
+@media (max-width: 760px) { .partner-grid { grid-template-columns: 1fr; } }
+.partner-card {
+  background: rgba(255,255,255,.04);
+  border: 1px solid rgba(255,255,255,.1);
+  border-radius: 8px;
+  padding: 2rem 1.75rem;
+}
+.partner-num {
+  font-family: var(--disp);
+  font-size: 2.5rem;
+  color: rgba(255,255,255,.1);
+  line-height: 1;
+  margin-bottom: .9rem;
+}
+.partner-type { font-size: .67rem; letter-spacing: .17em; text-transform: uppercase; color: #7AC4A3; font-weight: 500; margin-bottom: .4rem; }
+.partner-card h3 { font-family: var(--disp); font-size: 1.2rem; color: #E2DDD5; margin-bottom: .6rem; }
+.partner-card p { font-size: .86rem; color: rgba(226,221,213,.55); line-height: 1.56; }
+.partner-card ul { margin-top: .75rem; padding-left: 1rem; font-size: .82rem; color: rgba(226,221,213,.45); }
+.partner-card li { margin-bottom: .28rem; }
+
+/* ─── EQUIPO ─────────────────────────────────────────────────────── */
+.team-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px,1fr));
+  gap: 1.25rem;
+  margin-top: 3rem;
+}
+.team-card {
+  background: var(--snow);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 1.5rem;
+}
+.avatar {
+  width: 46px; height: 46px; border-radius: 50%;
+  background: var(--forest); color: #fff;
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--disp); font-size: 1.05rem; font-weight: 500;
+  margin-bottom: .9rem;
+}
+.avatar.earth { background: var(--earth); }
+.avatar.stone { background: var(--stone); }
+.team-card h4 { font-size: .95rem; font-weight: 500; margin-bottom: .18rem; }
+.team-card .role { font-size: .78rem; color: var(--stone); line-height: 1.4; }
+.logos-section { margin-top: 4rem; padding-top: 3rem; border-top: 1px solid var(--border); }
+.logos-label { font-size: .68rem; letter-spacing: .18em; text-transform: uppercase; color: var(--stone); margin-bottom: 1.75rem; font-weight: 500; }
+.logo-row { display: flex; gap: 1.25rem; flex-wrap: wrap; align-items: center; }
+.logo-chip {
+  background: var(--paper); border: 1px solid var(--border);
+  border-radius: 6px; padding: .65rem 1.25rem;
+  font-size: .78rem; color: var(--stone); font-weight: 500; letter-spacing: .03em;
+}
+
+/* ─── CONTACTO ───────────────────────────────────────────────────── */
+.contacto { background: var(--snow); }
+.contact-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.55fr;
+  gap: 5rem;
+  margin-top: 3rem;
+}
+@media (max-width: 820px) { .contact-grid { grid-template-columns: 1fr; gap: 2.5rem; } }
+.contact-info p { font-size: .9rem; color: var(--stone); line-height: 1.65; margin-bottom: 1.25rem; }
+.contact-email { font-family: var(--disp); font-size: 1.3rem; color: var(--forest); font-style: italic; display: block; margin-top: .5rem; }
+form { display: flex; flex-direction: column; gap: 1.1rem; }
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1.1rem; }
+@media (max-width: 580px) { .form-row { grid-template-columns: 1fr; } }
+.field { display: flex; flex-direction: column; gap: .35rem; }
+.field label { font-size: .72rem; letter-spacing: .1em; text-transform: uppercase; color: var(--stone); font-weight: 500; }
+.field input, .field select, .field textarea {
+  background: var(--paper); border: 1px solid var(--border); border-radius: 4px;
+  padding: .7rem .95rem; font: 400 .9rem var(--body); color: var(--ink);
+  width: 100%; transition: border-color .18s;
+}
+.field input:focus, .field select:focus, .field textarea:focus { outline: none; border-color: var(--forest); }
+.field textarea { resize: vertical; min-height: 120px; }
+.form-success {
+  display: none;
+  padding: .9rem 1.25rem;
+  background: rgba(45,106,79,.1);
+  border-left: 3px solid var(--forest);
+  border-radius: 0 4px 4px 0;
+  font-size: .88rem; color: var(--forest);
+}
+
+/* ─── FOOTER ─────────────────────────────────────────────────────── */
+footer {
+  background: #04100A;
+  color: rgba(255,255,255,.35);
+  padding-block: 3rem;
+  padding-left: max(28px, env(safe-area-inset-left, 0px));
+  padding-right: max(28px, env(safe-area-inset-right, 0px));
+}
+.foot-inner {
+  max-width: 1100px;
+  margin-inline: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+.foot-logo { font-family: var(--disp); font-size: 1.15rem; color: rgba(255,255,255,.5); letter-spacing: .06em; }
+.foot-legal { font-size: .76rem; line-height: 1.68; max-width: 680px; }
+.foot-legal strong { color: rgba(255,255,255,.5); }
+.foot-bottom {
+  display: flex; justify-content: space-between; align-items: center;
+  padding-top: 1.5rem; border-top: 1px solid rgba(255,255,255,.06);
+  font-size: .73rem; flex-wrap: wrap; gap: .5rem;
+}
+</style>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     NAV
+═══════════════════════════════════════════════════════════════ -->
+<nav id="nav">
+  <a href="#inicio" class="nav-logo">ENLAZA</a>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="#problema"><span class="es">El Problema</span><span class="en">The Problem</span></a></li>
+    <li><a href="#modelo"><span class="es">El Modelo</span><span class="en">The Model</span></a></li>
+    <li><a href="#aysen">Aysén</a></li>
+    <li><a href="#impacto"><span class="es">Impacto</span><span class="en">Impact</span></a></li>
+    <li><a href="#participar"><span class="es">Participar</span><span class="en">Partner</span></a></li>
+    <li><a href="#contacto"><span class="es">Contacto</span><span class="en">Contact</span></a></li>
+    <li>
+      <div class="lang-toggle">
+        <button id="btnEs" onclick="setLang('es')" class="active">ES</button>
+        <button id="btnEn" onclick="setLang('en')">EN</button>
+      </div>
+    </li>
+  </ul>
+  <button class="nav-burger" onclick="toggleMenu()" aria-label="Menú">☰</button>
+</nav>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     HERO
+═══════════════════════════════════════════════════════════════ -->
+<section class="hero" id="inicio">
+  <div class="hero-stars"></div>
+
+  <!-- Mountain silhouette -->
+  <svg class="hero-mountains" viewBox="0 0 1440 420" preserveAspectRatio="xMidYMax slice" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <!-- Glacier peaks (far, pale) -->
+    <path d="M0,320 L70,230 L130,260 L210,195 L290,235 L370,178 L450,215 L530,155 L615,188 L700,135 L785,168 L870,118 L950,152 L1030,125 L1110,158 L1190,128 L1270,165 L1355,138 L1440,172 L1440,420 L0,420 Z" fill="rgba(30,70,45,.55)"/>
+    <!-- Mid range -->
+    <path d="M0,355 L55,305 L120,325 L195,282 L275,312 L355,268 L440,295 L525,252 L610,278 L690,245 L770,268 L855,232 L940,258 L1020,228 L1105,255 L1185,232 L1265,258 L1350,238 L1440,260 L1440,420 L0,420 Z" fill="rgba(18,50,30,.72)"/>
+    <!-- Foreground ridge -->
+    <path d="M0,400 L90,368 L165,382 L245,350 L340,372 L420,342 L510,360 L605,330 L685,352 L775,328 L865,348 L955,330 L1040,350 L1130,332 L1215,355 L1310,338 L1440,355 L1440,420 L0,420 Z" fill="#081210"/>
+    <!-- Water / lake glint -->
+    <ellipse cx="690" cy="400" rx="90" ry="10" fill="rgba(45,106,79,.12)"/>
+  </svg>
+
+  <div class="hero-content">
+    <p class="hero-eyebrow">Fondo ENLAZA · Latinoamérica</p>
+    <h1>
+      <span class="es">Energía limpia,<br><em>propiedad comunitaria</em></span>
+      <span class="en">Clean energy,<br><em>community ownership</em></span>
+    </h1>
+    <p class="hero-sub">
+      <span class="es">Fondo de financiamiento mixto para energía renovable con propiedad comunitaria en zonas aisladas de América Latina. Primer proyecto: Patagonia chilena.</span>
+      <span class="en">A blended-finance fund for community-owned renewable energy in isolated areas across Latin America. First project: Chilean Patagonia.</span>
+    </p>
+    <div class="hero-ctas">
+      <a href="#modelo" class="btn btn-solid"><span class="es">Conoce el fondo</span><span class="en">Explore the fund</span></a>
+      <a href="#contacto" class="btn btn-outline"><span class="es">Contactar</span><span class="en">Get in touch</span></a>
+    </div>
+  </div>
+
+  <div class="hero-line" aria-hidden="true">
+    <div class="hero-line-bar"></div>
+    <span class="es">Explorar</span><span class="en">Explore</span>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     EL PROBLEMA
+═══════════════════════════════════════════════════════════════ -->
+<section id="problema">
+  <div class="inner">
+    <p class="eyebrow"><span class="es">El Problema</span><span class="en">The Problem</span></p>
+    <h2>
+      <span class="es">Aislamiento energético que cuesta caro, contamina más</span>
+      <span class="en">Energy isolation: costly, polluting, and overlooked</span>
+    </h2>
+    <p class="lead">
+      <span class="es">Las zonas aisladas de Latinoamérica pagan tres a cinco veces el precio urbano de la energía, respiran el aire más contaminado del continente y quedan fuera del radar del financiamiento comercial.</span>
+      <span class="en">Isolated communities across Latin America pay three to five times urban energy prices, breathe some of the continent's most polluted air, and fall outside the reach of commercial finance.</span>
+    </p>
+
+    <div class="prob-grid">
+      <div class="prob-card">
+        <div class="big">3–5×</div>
+        <h3><span class="es">Costo de la energía</span><span class="en">Energy cost premium</span></h3>
+        <p><span class="es">Las comunidades aisladas de Aysén pagan hasta cinco veces más por la electricidad que las zonas urbanas conectadas a la red, subsidiadas por diésel importado con alto costo logístico.</span><span class="en">Isolated communities in Aysén pay up to five times more for electricity than connected urban areas, subsidized by imported diesel at high logistical cost.</span></p>
+      </div>
+      <div class="prob-card">
+        <div class="big">95%</div>
+        <h3><span class="es">Del PM2.5 en Coyhaique</span><span class="en">Of PM2.5 in Coyhaique</span></h3>
+        <p><span class="es">La quema de leña para calefacción genera el 95% de las partículas finas en el aire de la capital de Aysén, una de las ciudades con peor calidad de aire del hemisferio sur.</span><span class="en">Firewood burning for heating generates 95% of fine particulate matter in Aysén's regional capital, one of the most polluted cities in the southern hemisphere.</span></p>
+      </div>
+      <div class="prob-card">
+        <div class="big">&lt;5 MW</div>
+        <h3><span class="es">La brecha de financiamiento</span><span class="en">The financing gap</span></h3>
+        <p><span class="es">Los proyectos de energía aislada menores a 5 MW son demasiado pequeños y riesgosos para la banca comercial. Las comunidades locales tampoco tienen capital para ser propietarias de su propia infraestructura.</span><span class="en">Sub-5 MW isolated energy projects are too small and risky for commercial lenders, and local communities lack capital to take ownership stakes in their own energy infrastructure.</span></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     EL MODELO
+═══════════════════════════════════════════════════════════════ -->
+<section id="modelo" class="modelo">
+  <div class="inner">
+    <p class="eyebrow light"><span class="es">Nuestro Modelo</span><span class="en">Our Model</span></p>
+    <h2>
+      <span class="es">Financiamiento mixto que convierte comunidades en propietarias</span>
+      <span class="en">Blended finance that turns communities into owners</span>
+    </h2>
+    <p class="lead">
+      <span class="es">El Fondo ENLAZA reúne grants, capital catalítico e inversión comercial para estructurar proyectos de energía renovable donde las comunidades locales adquieren una participación real —sin capital propio inicial.</span>
+      <span class="en">The ENLAZA Fund pools grants, catalytic, and commercial capital to structure renewable energy projects where local communities acquire a real equity stake —with no upfront cost of their own.</span>
+    </p>
+
+    <div class="innovation-box">
+      <div class="tag es">Innovación central · Community equity loan</div>
+      <div class="tag en">Core innovation · Community equity loan</div>
+      <p>
+        <span class="es"><strong>Préstamo de equity comunitario:</strong> el fondo presta a las comunidades el capital necesario para comprar una participación en cada SPV del proyecto. El préstamo se repaga íntegramente con los dividendos que genera esa misma participación —sin requerir capital propio ni garantías. Las comunidades pasan de beneficiarias a <strong>copropietarias</strong> de activos de energía limpia con flujo de caja positivo.</span>
+        <span class="en"><strong>Community equity loan:</strong> the fund lends communities the capital needed to purchase a stake in each project SPV. The loan is repaid entirely from the dividends generated by that very stake —no upfront capital or collateral required. Communities go from being beneficiaries to <strong>co-owners</strong> of cash-flowing clean energy assets.</span>
+      </p>
+    </div>
+
+    <!-- Capital Structure Diagram -->
+    <div class="diag-scroll">
+      <svg viewBox="0 0 920 490" xmlns="http://www.w3.org/2000/svg" style="font-family:'DM Sans',system-ui,sans-serif;">
+        <defs>
+          <marker id="ag" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto"><path d="M0,0 L7,3.5 L0,7 Z" fill="#5FAD89"/></marker>
+          <marker id="ae" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto"><path d="M0,0 L7,3.5 L0,7 Z" fill="#C47C2B"/></marker>
+          <marker id="aw" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto"><path d="M0,0 L7,3.5 L0,7 Z" fill="rgba(226,221,213,.4)"/></marker>
+          <marker id="as" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="rgba(226,221,213,.2)"/></marker>
+        </defs>
+
+        <!-- ── Column headers ── -->
+        <text x="93"  y="24" text-anchor="middle" font-size="8.5" letter-spacing="1.8" fill="rgba(226,221,213,.35)" font-weight="500">INVERSORES</text>
+        <text x="360" y="24" text-anchor="middle" font-size="8.5" letter-spacing="1.8" fill="rgba(226,221,213,.35)" font-weight="500">VEHÍCULO / VEHICLE</text>
+        <text x="642" y="24" text-anchor="middle" font-size="8.5" letter-spacing="1.8" fill="rgba(226,221,213,.35)" font-weight="500">PIPELINE</text>
+        <text x="842" y="24" text-anchor="middle" font-size="8.5" letter-spacing="1.8" fill="rgba(226,221,213,.35)" font-weight="500">OFFTAKE</text>
+
+        <!-- ── INVESTORS ── -->
+        <!-- Grants -->
+        <rect x="10" y="40" width="165" height="82" rx="6" fill="none" stroke="#5FAD89" stroke-width="1.4"/>
+        <text x="93" y="62"  text-anchor="middle" font-size="10"  font-weight="600" fill="#A8D5B8">GRANTS</text>
+        <text x="93" y="78"  text-anchor="middle" font-size="8.2" fill="rgba(226,221,213,.58)">Donantes, fundaciones</text>
+        <text x="93" y="91"  text-anchor="middle" font-size="8.2" fill="rgba(226,221,213,.58)">fondos climáticos</text>
+        <text x="93" y="107" text-anchor="middle" font-size="7.5" fill="rgba(226,221,213,.32)">(sin retorno financiero)</text>
+
+        <!-- Catalytic -->
+        <rect x="10" y="144" width="165" height="88" rx="6" fill="none" stroke="#C47C2B" stroke-width="1.4"/>
+        <text x="93" y="166" text-anchor="middle" font-size="9.5"  font-weight="600" fill="#D9834A">CAPITAL CATALÍTICO</text>
+        <text x="93" y="181" text-anchor="middle" font-size="8.2" fill="rgba(226,221,213,.58)">DFIs, inversores de impacto</text>
+        <text x="93" y="194" text-anchor="middle" font-size="8.2" fill="rgba(226,221,213,.58)">(concesional, first-loss,</text>
+        <text x="93" y="207" text-anchor="middle" font-size="8.2" fill="rgba(226,221,213,.58)">junior)</text>
+
+        <!-- Commercial -->
+        <rect x="10" y="255" width="165" height="82" rx="6" fill="none" stroke="rgba(226,221,213,.32)" stroke-width="1.4"/>
+        <text x="93" y="276" text-anchor="middle" font-size="9.5" font-weight="600" fill="rgba(226,221,213,.78)">CAPITAL COMERCIAL</text>
+        <text x="93" y="291" text-anchor="middle" font-size="8.2" fill="rgba(226,221,213,.58)">Inversores institucionales</text>
+        <text x="93" y="304" text-anchor="middle" font-size="8.2" fill="rgba(226,221,213,.58)">y privados (senior)</text>
+
+        <!-- ── Arrows investors → vehicle ── -->
+        <line x1="176" y1="81"  x2="208" y2="81"  stroke="#5FAD89" stroke-width="1.4" marker-end="url(#ag)"/>
+        <line x1="176" y1="188" x2="208" y2="188" stroke="#C47C2B" stroke-width="1.4" marker-end="url(#ae)"/>
+        <line x1="176" y1="296" x2="208" y2="296" stroke="rgba(226,221,213,.32)" stroke-width="1.4" marker-end="url(#aw)"/>
+
+        <!-- ── VEHICLE outer box ── -->
+        <rect x="210" y="40" width="296" height="332" rx="8" fill="none" stroke="rgba(226,221,213,.2)" stroke-width="1.8"/>
+        <text x="358" y="63" text-anchor="middle" font-size="11" font-weight="600" fill="rgba(226,221,213,.85)">LatAm Community</text>
+        <text x="358" y="78" text-anchor="middle" font-size="11" font-weight="600" fill="rgba(226,221,213,.85)">Energy Fund</text>
+
+        <!-- Window 1: Prep -->
+        <rect x="227" y="91"  width="262" height="77" rx="5" fill="none" stroke="#5FAD89" stroke-width="1.1"/>
+        <text x="358" y="111" text-anchor="middle" font-size="9.5" font-weight="600" fill="#A8D5B8">Ventana de Preparación</text>
+        <text x="358" y="127" text-anchor="middle" font-size="8"   fill="rgba(226,221,213,.52)">Estudios, permisos, acuerdos</text>
+        <text x="358" y="140" text-anchor="middle" font-size="8"   fill="rgba(226,221,213,.52)">comunitarios (etapas con hitos)</text>
+        <text x="358" y="158" text-anchor="middle" font-size="7.2" fill="rgba(226,221,213,.28)">[financiado con grants]</text>
+
+        <!-- Window 2: Equity -->
+        <rect x="227" y="182" width="262" height="73" rx="5" fill="rgba(255,255,255,.04)" stroke="rgba(226,221,213,.22)" stroke-width="1.1"/>
+        <text x="358" y="203" text-anchor="middle" font-size="9.5" font-weight="600" fill="rgba(226,221,213,.8)">Equity en SPVs</text>
+        <text x="358" y="219" text-anchor="middle" font-size="8"   fill="rgba(226,221,213,.52)">El fondo aporta equity en</text>
+        <text x="358" y="232" text-anchor="middle" font-size="8"   fill="rgba(226,221,213,.52)">cada sociedad de proyecto</text>
+
+        <!-- Window 3: Community loans -->
+        <rect x="227" y="269" width="262" height="88" rx="5" fill="none" stroke="#C47C2B" stroke-width="1.1"/>
+        <text x="358" y="289" text-anchor="middle" font-size="9.5" font-weight="600" fill="#D9834A">Préstamos de Equity</text>
+        <text x="358" y="303" text-anchor="middle" font-size="9.5" font-weight="600" fill="#D9834A">Comunitario ★</text>
+        <text x="358" y="320" text-anchor="middle" font-size="8"   fill="rgba(226,221,213,.52)">Préstamos de largo plazo a</text>
+        <text x="358" y="333" text-anchor="middle" font-size="8"   fill="rgba(226,221,213,.52)">comunidades para adquirir</text>
+        <text x="358" y="346" text-anchor="middle" font-size="8"   fill="rgba(226,221,213,.52)">su participación en la SPV</text>
+
+        <!-- ── Arrows vehicle → pipeline ── -->
+        <line x1="508" y1="130" x2="540" y2="155" stroke="#5FAD89" stroke-width="1.2" marker-end="url(#ag)"/>
+        <line x1="508" y1="218" x2="540" y2="218" stroke="rgba(226,221,213,.4)" stroke-width="1.4" marker-end="url(#aw)"/>
+        <line x1="508" y1="313" x2="540" y2="360" stroke="#C47C2B" stroke-width="1.4" marker-end="url(#ae)"/>
+
+        <!-- ── TARGET PIPELINE ── -->
+        <!-- Project SPVs box -->
+        <rect x="543" y="42" width="198" height="268" rx="8" fill="rgba(255,255,255,.03)" stroke="rgba(226,221,213,.18)" stroke-width="1.5"/>
+        <text x="642" y="65" text-anchor="middle" font-size="10"  font-weight="600" fill="rgba(226,221,213,.82)">SPVs de Proyecto</text>
+        <text x="642" y="81" text-anchor="middle" font-size="8"   fill="rgba(226,221,213,.5)">Minihidro y solar</text>
+        <text x="642" y="94" text-anchor="middle" font-size="8"   fill="rgba(226,221,213,.5)">+ baterías donde se requiera</text>
+        <line x1="558" y1="108" x2="726" y2="108" stroke="rgba(226,221,213,.08)" stroke-width="1"/>
+        <text x="642" y="124" text-anchor="middle" font-size="8.5" font-weight="500" fill="#A8D5B8">Chile (Aysén):</text>
+        <text x="642" y="138" text-anchor="middle" font-size="8"   fill="rgba(226,221,213,.5)">9 sitios · ~14.7 MW</text>
+        <text x="642" y="152" text-anchor="middle" font-size="8"   fill="rgba(226,221,213,.5)">Prioritarios: La Gloria,</text>
+        <text x="642" y="165" text-anchor="middle" font-size="8"   fill="rgba(226,221,213,.5)">Sonia 1 y 2 (~5.8 MW,</text>
+        <text x="642" y="178" text-anchor="middle" font-size="8"   fill="rgba(226,221,213,.5)">Mañihuales)</text>
+        <line x1="558" y1="195" x2="726" y2="195" stroke="rgba(226,221,213,.08)" stroke-width="1"/>
+        <text x="642" y="212" text-anchor="middle" font-size="8.5" font-weight="500" fill="#A8D5B8">Replicación:</text>
+        <text x="642" y="227" text-anchor="middle" font-size="8"   fill="rgba(226,221,213,.5)">Patagonia argentina</text>
+        <text x="642" y="241" text-anchor="middle" font-size="8"   fill="rgba(226,221,213,.5)">Colombia fuera de red</text>
+        <text x="642" y="263" text-anchor="middle" font-size="7.5" fill="rgba(226,221,213,.28)">Solar · Minihidro</text>
+
+        <!-- Ownership box -->
+        <rect x="543" y="330" width="198" height="88" rx="8" fill="none" stroke="#5FAD89" stroke-width="1.1"/>
+        <text x="642" y="352" text-anchor="middle" font-size="10"  font-weight="600" fill="#A8D5B8">Propiedad</text>
+        <text x="642" y="368" text-anchor="middle" font-size="8"   fill="rgba(226,221,213,.5)">Fondo + comunidades locales</text>
+        <text x="642" y="381" text-anchor="middle" font-size="8"   fill="rgba(226,221,213,.5)">(+ deuda senior de proyecto</text>
+        <text x="642" y="394" text-anchor="middle" font-size="8"   fill="rgba(226,221,213,.5)">de bancos locales / DFIs)</text>
+
+        <!-- ── Arrows pipeline → offtake ── -->
+        <line x1="742" y1="145" x2="770" y2="115" stroke="rgba(226,221,213,.3)" stroke-width="1.2" marker-end="url(#aw)"/>
+        <line x1="742" y1="190" x2="770" y2="225" stroke="rgba(226,221,213,.3)" stroke-width="1.2" marker-end="url(#aw)"/>
+        <line x1="742" y1="374" x2="770" y2="345" stroke="rgba(226,221,213,.3)" stroke-width="1.2" marker-end="url(#aw)"/>
+
+        <!-- ── OFFTAKE ── -->
+        <!-- Local utility -->
+        <rect x="773" y="55"  width="138" height="82" rx="6" fill="rgba(255,255,255,.03)" stroke="rgba(226,221,213,.18)" stroke-width="1"/>
+        <text x="842" y="76"  text-anchor="middle" font-size="9"   font-weight="600" fill="rgba(226,221,213,.75)">Distribuidora local</text>
+        <text x="842" y="91"  text-anchor="middle" font-size="7.5" fill="rgba(226,221,213,.45)">PPA largo plazo</text>
+        <text x="842" y="103" text-anchor="middle" font-size="7.5" fill="rgba(226,221,213,.45)">reemplaza generación</text>
+        <text x="842" y="115" text-anchor="middle" font-size="7.5" fill="rgba(226,221,213,.45)">diésel</text>
+        <text x="842" y="129" text-anchor="middle" font-size="7"   fill="rgba(226,221,213,.28)">(Grupo Saesa)</text>
+
+        <!-- Mini-grid users -->
+        <rect x="773" y="175" width="138" height="82" rx="6" fill="rgba(255,255,255,.03)" stroke="rgba(226,221,213,.18)" stroke-width="1"/>
+        <text x="842" y="196" text-anchor="middle" font-size="9"   font-weight="600" fill="rgba(226,221,213,.75)">Usuarios de minigrid</text>
+        <text x="842" y="211" text-anchor="middle" font-size="7.5" fill="rgba(226,221,213,.45)">Hogares y empresas</text>
+        <text x="842" y="223" text-anchor="middle" font-size="7.5" fill="rgba(226,221,213,.45)">remotos (respaldados</text>
+        <text x="842" y="236" text-anchor="middle" font-size="7.5" fill="rgba(226,221,213,.45)">con baterías)</text>
+
+        <!-- Electric heating -->
+        <rect x="773" y="300" width="138" height="82" rx="6" fill="rgba(255,255,255,.03)" stroke="rgba(226,221,213,.18)" stroke-width="1"/>
+        <text x="842" y="321" text-anchor="middle" font-size="9"   font-weight="600" fill="rgba(226,221,213,.75)">Calefacción eléctrica</text>
+        <text x="842" y="336" text-anchor="middle" font-size="7.5" fill="rgba(226,221,213,.45)">Reemplaza leña</text>
+        <text x="842" y="348" text-anchor="middle" font-size="7.5" fill="rgba(226,221,213,.45)">Reduce PM2.5</text>
+        <text x="842" y="361" text-anchor="middle" font-size="7.5" fill="rgba(226,221,213,.45)">(Mañihuales)</text>
+
+        <!-- Returns arrow at bottom -->
+        <path d="M870,460 Q455,460 455,380" fill="none" stroke="rgba(226,221,213,.12)" stroke-width="1" stroke-dasharray="5 4" marker-end="url(#as)"/>
+        <text x="580" y="454" text-anchor="middle" font-size="7.2" fill="rgba(226,221,213,.28)">Retornos: ingresos offtake → dividendos SPV → retorno del fondo + repago de préstamos comunitarios</text>
+      </svg>
+    </div>
+
+    <p class="diag-note">
+      <span class="es">★ Innovación central del Fondo ENLAZA. Estructura ilustrativa a refinar durante la etapa de factibilidad.</span>
+      <span class="en">★ Core innovation of the ENLAZA Fund. Illustrative structure to be refined during the feasibility phase.</span>
+    </p>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     ENERGÍA PARA AYSÉN
+═══════════════════════════════════════════════════════════════ -->
+<section id="aysen">
+  <div class="inner">
+    <p class="eyebrow"><span class="es">Primer Proyecto</span><span class="en">First Project</span></p>
+    <h2>
+      <span class="es">Energía para Aysén, Patagonia chilena</span>
+      <span class="en">Energy for Aysén, Chilean Patagonia</span>
+    </h2>
+    <p class="lead">
+      <span class="es">El pipeline inicial comprende 9 sitios de minihidro a lo largo de la Región de Aysén (~14.7 MW), con La Gloria y Sonia 1 &amp; 2 (~5.8 MW, Mañihuales) como sitios prioritarios para el primer cierre financiero.</span>
+      <span class="en">The initial pipeline includes 9 mini-hydro sites across the Aysén Region (~14.7 MW), with La Gloria and Sonia 1 &amp; 2 (~5.8 MW, Mañihuales) as priority sites for the first financial close.</span>
+    </p>
+
+    <div class="aysen-grid">
+      <!-- Left: text + site list -->
+      <div>
+        <p class="aysen-desc">
+          <span class="es">Aysén es la región más austral de Chile con generación eléctrica activa. Su red está parcialmente conectada y varias comunidades dependen del diésel importado. El recurso hídrico disponible en sus ríos permite sustituir esa generación con minihidro a bajo costo operativo —y con comunidades que pasan a ser propietarias.</span>
+          <span class="en">Aysén is Chile's southernmost region with active power generation. Its grid is partially connected and several communities depend on imported diesel. The abundant river resources allow substituting that generation with low-cost mini-hydro —with communities that become owners in the process.</span>
+        </p>
+
+        <div class="sites-list">
+          <div class="site-row">
+            <div class="site-dot priority"></div>
+            <div>
+              <h4>La Gloria</h4>
+              <p><span class="es">~2.5 MW · Mañihuales · Prioritario — estudios avanzados</span><span class="en">~2.5 MW · Mañihuales · Priority — advanced studies</span></p>
+            </div>
+          </div>
+          <div class="site-row">
+            <div class="site-dot priority"></div>
+            <div>
+              <h4>Sonia 1 &amp; Sonia 2</h4>
+              <p><span class="es">~3.3 MW combinados · Mañihuales · Prioritario — caso de calefacción eléctrica</span><span class="en">~3.3 MW combined · Mañihuales · Priority — electric heating case</span></p>
+            </div>
+          </div>
+          <div class="site-row">
+            <div class="site-dot secondary"></div>
+            <div>
+              <h4><span class="es">Sitios 4–9</span><span class="en">Sites 4–9</span></h4>
+              <p><span class="es">~8.9 MW adicionales · Pipeline secundario en fase de evaluación técnica</span><span class="en">~8.9 MW additional · Secondary pipeline under technical evaluation</span></p>
+            </div>
+          </div>
+        </div>
+
+        <div class="manihuales-box">
+          <div class="tag"><span class="es">Caso Mañihuales</span><span class="en">Mañihuales case</span></div>
+          <p>
+            <span class="es">La electrificación de la calefacción en Mañihuales —reemplazando leña con calefacción eléctrica— agrega demanda local bancable a los proyectos Sonia, mejora los ingresos de las SPVs y reduce drásticamente la contaminación por PM2.5 en la comunidad.</span>
+            <span class="en">Heating electrification in Mañihuales —replacing firewood with electric heating— adds bankable local demand to the Sonia projects, improves SPV revenues, and dramatically reduces PM2.5 pollution for the community.</span>
+          </p>
+        </div>
+      </div>
+
+      <!-- Right: map -->
+      <div class="map-wrap">
+        <svg class="map-svg" viewBox="0 0 390 530" xmlns="http://www.w3.org/2000/svg">
+          <rect width="390" height="530" rx="10" fill="var(--snow)"/>
+
+          <!-- Ocean hint -->
+          <rect width="390" height="530" rx="10" fill="rgba(45,106,79,.04)"/>
+
+          <!-- Land body -->
+          <path d="M72,0 L390,0 L390,530 L72,530 L50,510 L35,480 L55,450 L38,420 L58,390 L40,358 L60,326 L42,292 L60,260 L44,228 L62,195 L46,163 L64,130 L48,96 L66,62 L50,28 Z" fill="rgba(45,106,79,.07)" stroke="rgba(45,106,79,.18)" stroke-width="1.5"/>
+
+          <!-- Carretera Austral (dashed) -->
+          <path d="M210,75 Q202,138 196,200 Q188,258 184,315 Q178,374 174,430 Q170,475 168,525" fill="none" stroke="rgba(181,98,31,.35)" stroke-width="2" stroke-dasharray="7 4"/>
+
+          <!-- Rivers -->
+          <path d="M190,155 Q228,168 268,180 Q308,183 348,172" fill="none" stroke="rgba(45,106,79,.38)" stroke-width="1.4" stroke-linecap="round"/>
+          <path d="M200,228 Q235,240 260,254 Q284,265 300,262" fill="none" stroke="rgba(45,106,79,.38)" stroke-width="1.6" stroke-linecap="round"/>
+          <path d="M172,378 Q205,390 232,400 Q258,408 285,398" fill="none" stroke="rgba(45,106,79,.3)" stroke-width="1.2" stroke-linecap="round"/>
+          <path d="M160,435 Q196,445 224,455 Q255,463 282,450" fill="none" stroke="rgba(45,106,79,.3)" stroke-width="1.8" stroke-linecap="round"/>
+
+          <!-- Mountain hint -->
+          <path d="M300,65 L314,50 L326,63 L338,47 L352,60 L364,46 L376,57" fill="none" stroke="rgba(45,106,79,.18)" stroke-width="1"/>
+          <path d="M300,82 L314,68 L326,80 L338,65 L352,77 L364,64 L376,74" fill="none" stroke="rgba(45,106,79,.12)" stroke-width="1"/>
+
+          <!-- PRIORITY SITES -->
+          <!-- La Gloria -->
+          <circle cx="218" cy="244" r="9" fill="#B5621F" opacity=".88"/>
+          <circle cx="218" cy="244" r="14" fill="none" stroke="#B5621F" stroke-width="1.4" opacity=".35"/>
+          <text x="236" y="241" font-size="9.5" font-weight="600" fill="var(--ink)" font-family="DM Sans,system-ui">La Gloria</text>
+          <text x="236" y="253" font-size="7.5" fill="var(--stone)" font-family="DM Sans,system-ui">~2.5 MW · Prioritario</text>
+
+          <!-- Sonia 1&2 -->
+          <circle cx="222" cy="278" r="8" fill="#B5621F" opacity=".88"/>
+          <circle cx="222" cy="278" r="12" fill="none" stroke="#B5621F" stroke-width="1.4" opacity=".35"/>
+          <text x="238" y="276" font-size="9.5" font-weight="600" fill="var(--ink)" font-family="DM Sans,system-ui">Sonia 1 &amp; 2</text>
+          <text x="238" y="288" font-size="7.5" fill="var(--stone)" font-family="DM Sans,system-ui">~3.3 MW · Prioritario</text>
+
+          <!-- Mañihuales label -->
+          <rect x="168" y="300" width="82" height="16" rx="3" fill="rgba(181,98,31,.1)"/>
+          <text x="209" y="312" text-anchor="middle" font-size="7.5" fill="#B5621F" font-weight="600" font-family="DM Sans,system-ui">MAÑIHUALES</text>
+
+          <!-- SECONDARY SITES -->
+          <circle cx="172" cy="162" r="5" fill="#2D6A4F" opacity=".7"/>
+          <text x="182" y="166" font-size="8" fill="var(--stone)" font-family="DM Sans,system-ui">Sitio 4</text>
+
+          <circle cx="258" cy="148" r="5" fill="#2D6A4F" opacity=".7"/>
+          <text x="268" y="152" font-size="8" fill="var(--stone)" font-family="DM Sans,system-ui">Sitio 5</text>
+
+          <circle cx="312" cy="205" r="5" fill="#2D6A4F" opacity=".7"/>
+          <text x="322" y="209" font-size="8" fill="var(--stone)" font-family="DM Sans,system-ui">Sitio 6</text>
+
+          <circle cx="180" cy="344" r="5" fill="#2D6A4F" opacity=".7"/>
+          <text x="190" y="348" font-size="8" fill="var(--stone)" font-family="DM Sans,system-ui">Sitio 7</text>
+
+          <circle cx="236" cy="388" r="5" fill="#2D6A4F" opacity=".7"/>
+          <text x="246" y="392" font-size="8" fill="var(--stone)" font-family="DM Sans,system-ui">Sitio 8</text>
+
+          <circle cx="198" cy="438" r="5" fill="#2D6A4F" opacity=".7"/>
+          <text x="208" y="442" font-size="8" fill="var(--stone)" font-family="DM Sans,system-ui">Sitio 9</text>
+
+          <!-- Coyhaique -->
+          <circle cx="255" cy="200" r="4" fill="var(--stone)" opacity=".45"/>
+          <text x="263" y="197" font-size="8" fill="var(--stone)" font-family="DM Sans,system-ui" font-style="italic">Coyhaique</text>
+
+          <!-- Scale -->
+          <line x1="285" y1="508" x2="375" y2="508" stroke="var(--stone)" stroke-width="1" opacity=".35"/>
+          <line x1="285" y1="504" x2="285" y2="512" stroke="var(--stone)" stroke-width="1" opacity=".35"/>
+          <line x1="375" y1="504" x2="375" y2="512" stroke="var(--stone)" stroke-width="1" opacity=".35"/>
+          <text x="330" y="522" text-anchor="middle" font-size="7.5" fill="var(--stone)" opacity=".5" font-family="DM Sans,system-ui">~100 km</text>
+
+          <!-- N arrow -->
+          <text x="345" y="30" text-anchor="middle" font-size="10" fill="var(--stone)" opacity=".45" font-family="DM Sans,system-ui" font-weight="500">N</text>
+          <line x1="345" y1="33" x2="345" y2="50" stroke="var(--stone)" stroke-width="1" opacity=".35"/>
+          <path d="M341,47 L345,53 L349,47 Z" fill="var(--stone)" opacity=".4"/>
+        </svg>
+
+        <div class="map-legend">
+          <div class="leg"><div class="leg-dot" style="background:#B5621F"></div><span class="es">Sitio prioritario</span><span class="en">Priority site</span></div>
+          <div class="leg"><div class="leg-dot" style="background:#2D6A4F"></div><span class="es">Pipeline secundario</span><span class="en">Secondary pipeline</span></div>
+          <div class="leg"><div class="leg-dash"></div><span class="es">Carretera Austral</span><span class="en">Southern Highway</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     IMPACTO ESTIMADO
+═══════════════════════════════════════════════════════════════ -->
+<section id="impacto" class="impacto">
+  <div class="inner">
+    <p class="eyebrow"><span class="es">Impacto Estimado</span><span class="en">Estimated Impact</span></p>
+    <h2>
+      <span class="es">Números que importan, en zonas que lo merecen</span>
+      <span class="en">Numbers that matter, in places that deserve it</span>
+    </h2>
+    <p class="lead">
+      <span class="es">Indicadores de impacto del pipeline completo de Aysén (9 sitios, ~14.7 MW). Todas las cifras son estimaciones preliminares sujetas a validación.</span>
+      <span class="en">Impact indicators for the full Aysén pipeline (9 sites, ~14.7 MW). All figures are preliminary estimates subject to validation.</span>
+    </p>
+
+    <div class="metrics-grid">
+      <div class="metric">
+        <div class="num">~65</div>
+        <div class="unit">GWh / <span class="es">año</span><span class="en">year</span> *</div>
+        <div class="lbl"><span class="es">Generación limpia estimada</span><span class="en">Estimated clean generation</span></div>
+      </div>
+      <div class="metric">
+        <div class="num">~25k</div>
+        <div class="unit">tCO₂e / <span class="es">año</span><span class="en">year</span> *</div>
+        <div class="lbl"><span class="es">Emisiones evitadas</span><span class="en">Emissions avoided</span></div>
+      </div>
+      <div class="metric">
+        <div class="num">~15M</div>
+        <div class="unit"><span class="es">litros diésel / año *</span><span class="en">liters diesel / year *</span></div>
+        <div class="lbl"><span class="es">Diésel desplazado</span><span class="en">Diesel displaced</span></div>
+      </div>
+      <div class="metric">
+        <div class="num">~30k</div>
+        <div class="unit"><span class="es">personas *</span><span class="en">people *</span></div>
+        <div class="lbl"><span class="es">Beneficiadas directamente</span><span class="en">Directly benefited</span></div>
+      </div>
+    </div>
+
+    <p class="disclaimer">
+      <span class="es">* Estimaciones preliminares basadas en el pipeline completo de 9 sitios (~14.7 MW). Sujetas a validación durante la etapa de factibilidad de ingeniería. No constituyen compromisos ni garantías de rendimiento.</span>
+      <span class="en">* Preliminary estimates based on the full 9-site pipeline (~14.7 MW). Subject to validation during the engineering feasibility phase. These do not constitute commitments or performance guarantees.</span>
+    </p>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     EXPANSIÓN REGIONAL
+═══════════════════════════════════════════════════════════════ -->
+<section id="expansion">
+  <div class="inner">
+    <p class="eyebrow"><span class="es">Expansión Regional</span><span class="en">Regional Expansion</span></p>
+    <h2>
+      <span class="es">Un modelo replicable en toda Latinoamérica</span>
+      <span class="en">A replicable model across Latin America</span>
+    </h2>
+    <p class="lead">
+      <span class="es">Aysén es el banco de pruebas. El préstamo de equity comunitario y la estructura del fondo están diseñados para replicarse en cualquier zona aislada con recurso renovable disponible.</span>
+      <span class="en">Aysén is the proving ground. The community equity loan and fund structure are designed for replication in any isolated area with available renewable resources.</span>
+    </p>
+
+    <div class="exp-grid">
+      <div class="exp-card">
+        <div class="country">Argentina</div>
+        <h3><span class="es">Patagonia Argentina</span><span class="en">Argentine Patagonia</span></h3>
+        <p><span class="es">Las provincias australes de Argentina cuentan con extensas zonas no conectadas a la red eléctrica nacional, con recurso hídrico y eólico disponible y un contexto de dependencia del diésel muy similar al de Aysén.</span><span class="en">Argentina's southern provinces have extensive zones not connected to the national grid, with available hydro and wind resources, and a diesel dependence context very similar to Aysén.</span></p>
+        <div class="exp-tags">
+          <span class="tag-pill"><span class="es">Minihidro</span><span class="en">Mini-hydro</span></span>
+          <span class="tag-pill"><span class="es">Solar</span><span class="en">Solar</span></span>
+        </div>
+      </div>
+      <div class="exp-card">
+        <div class="country">Colombia</div>
+        <h3><span class="es">Zonas No Interconectadas</span><span class="en">Non-Interconnected Zones</span></h3>
+        <p><span class="es">Colombia tiene más de un millón de personas en Zonas No Interconectadas (ZNI) en el Pacífico y la Amazonia, con alta dependencia del diésel y marcos regulatorios que favorecen proyectos de energía renovable aislada.</span><span class="en">Colombia has over one million people in Non-Interconnected Zones (ZNI) across the Pacific and Amazon regions, with high diesel dependence and regulatory frameworks that support isolated renewable energy projects.</span></p>
+        <div class="exp-tags">
+          <span class="tag-pill"><span class="es">Solar + baterías</span><span class="en">Solar + batteries</span></span>
+          <span class="tag-pill"><span class="es">Minihidro</span><span class="en">Mini-hydro</span></span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     CÓMO PARTICIPAR
+═══════════════════════════════════════════════════════════════ -->
+<section id="participar" class="participar">
+  <div class="inner">
+    <p class="eyebrow light"><span class="es">Cómo Participar</span><span class="en">How to Partner</span></p>
+    <h2>
+      <span class="es">Tres formas de sumarse al fondo</span>
+      <span class="en">Three ways to join the fund</span>
+    </h2>
+    <p class="lead">
+      <span class="es">El Fondo ENLAZA está en etapa de estructuración y busca socios que compartan la visión de que las comunidades aisladas deben ser propietarias de la infraestructura que las alimenta.</span>
+      <span class="en">The ENLAZA Fund is in its structuring phase and seeks partners who share the vision that isolated communities should own the infrastructure that powers them.</span>
+    </p>
+
+    <div class="partner-grid">
+      <div class="partner-card">
+        <div class="partner-num">I</div>
+        <div class="partner-type es">Socio Catalítico</div>
+        <div class="partner-type en">Catalytic Partner</div>
+        <h3><span class="es">Capital de primera pérdida</span><span class="en">First-loss capital</span></h3>
+        <p><span class="es">DFIs, fondos climáticos y fundaciones que aportan capital concesional o grants para absorber el riesgo de preparación y anclar la estructura del fondo.</span><span class="en">DFIs, climate funds, and foundations that provide concessional capital or grants to absorb preparation risk and anchor the fund's structure.</span></p>
+        <ul>
+          <li><span class="es">Grants para la Ventana de Preparación</span><span class="en">Grants for the Preparation Window</span></li>
+          <li><span class="es">Tramo junior / first-loss</span><span class="en">Junior / first-loss tranche</span></li>
+          <li><span class="es">Co-diseño del instrumento</span><span class="en">Instrument co-design</span></li>
+        </ul>
+      </div>
+      <div class="partner-card">
+        <div class="partner-num">II</div>
+        <div class="partner-type es">Socio de Plataforma</div>
+        <div class="partner-type en">Platform Partner</div>
+        <h3><span class="es">Capital comercial + expertise</span><span class="en">Commercial capital + expertise</span></h3>
+        <p><span class="es">Inversores institucionales y privados, operadores de energía y fondos de infraestructura que ingresan en tramo senior una vez que los proyectos están desbloqueados.</span><span class="en">Institutional and private investors, energy operators, and infrastructure funds entering the senior tranche once projects are de-risked.</span></p>
+        <ul>
+          <li><span class="es">Equity y/o deuda senior de proyecto</span><span class="en">Project equity and/or senior debt</span></li>
+          <li><span class="es">Red de contactos y expertise técnico</span><span class="en">Network and technical expertise</span></li>
+          <li><span class="es">Acompañamiento en replicación</span><span class="en">Replication support</span></li>
+        </ul>
+      </div>
+      <div class="partner-card">
+        <div class="partner-num">III</div>
+        <div class="partner-type es">Socio de Proyecto</div>
+        <div class="partner-type en">Project Partner</div>
+        <h3><span class="es">Ejecución en terreno</span><span class="en">On-the-ground execution</span></h3>
+        <p><span class="es">Empresas de ingeniería, operadores de redes de distribución, municipios y organizaciones comunitarias que co-desarrollan proyectos y aseguran el arraigo local.</span><span class="en">Engineering firms, distribution network operators, municipalities, and community organizations that co-develop projects and ensure local embeddedness.</span></p>
+        <ul>
+          <li><span class="es">Ingeniería y construcción</span><span class="en">Engineering and construction</span></li>
+          <li><span class="es">Operación y mantenimiento</span><span class="en">Operations and maintenance</span></li>
+          <li><span class="es">Acuerdos comunitarios</span><span class="en">Community agreements</span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     EQUIPO Y SOCIOS
+═══════════════════════════════════════════════════════════════ -->
+<section id="equipo">
+  <div class="inner">
+    <p class="eyebrow"><span class="es">Equipo y Socios</span><span class="en">Team & Partners</span></p>
+    <h2>
+      <span class="es">Raíces patagónicas, alcance latinoamericano</span>
+      <span class="en">Patagonian roots, Latin American reach</span>
+    </h2>
+    <p class="lead">
+      <span class="es">Energía para Aysén fue fundada por la familia Piriz, con profundas raíces en la Patagonia chilena. El equipo combina experiencia financiera en grandes grupos empresariales con conocimiento territorial.</span>
+      <span class="en">Energía para Aysén was founded by the Piriz family, with deep roots in Chilean Patagonia. The team combines financial expertise from major business conglomerates with territorial knowledge.</span>
+    </p>
+
+    <div class="team-grid">
+      <div class="team-card">
+        <div class="avatar">FP</div>
+        <h4><span class="es">Familia Piriz</span><span class="en">Piriz Family</span></h4>
+        <p class="role"><span class="es">Fundadores · Energía para Aysén<br>Patagonia chilena</span><span class="en">Founders · Energía para Aysén<br>Chilean Patagonia</span></p>
+      </div>
+      <div class="team-card">
+        <div class="avatar stone">BV</div>
+        <h4>Bridging Ventures</h4>
+        <p class="role"><span class="es">Capital de impacto<br>Asesoría financiera</span><span class="en">Impact capital<br>Financial advisory</span></p>
+      </div>
+    </div>
+
+    <div class="logos-section">
+      <p class="logos-label"><span class="es">Socios estratégicos</span><span class="en">Strategic partners</span></p>
+      <div class="logo-row">
+        <div class="logo-chip">Familia Piriz</div>
+        <div class="logo-chip">Bridging Ventures</div>
+        <div class="logo-chip">Grupo Evans</div>
+        <div class="logo-chip">Saesa</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     CONTACTO
+═══════════════════════════════════════════════════════════════ -->
+<section id="contacto" class="contacto">
+  <div class="inner">
+    <p class="eyebrow"><span class="es">Contacto</span><span class="en">Contact</span></p>
+    <h2><span class="es">Hablemos</span><span class="en">Let's talk</span></h2>
+
+    <div class="contact-grid">
+      <div>
+        <p>
+          <span class="es">El Fondo ENLAZA está en etapa de estructuración y busca activamente capital catalítico. Si representas una DFI, fondo climático, fundación o inversor de impacto, nos interesa conocerte.</span>
+          <span class="en">The ENLAZA Fund is in its structuring phase and is actively seeking catalytic capital. If you represent a DFI, climate fund, foundation, or impact investor, we would like to hear from you.</span>
+        </p>
+        <p>
+          <span class="es">También recibimos consultas de potenciales socios técnicos, comunidades de la región y medios especializados.</span>
+          <span class="en">We also welcome inquiries from potential technical partners, communities in the region, and specialized media.</span>
+        </p>
+        <span class="contact-email">contacto@fondoenlaza.com</span>
+      </div>
+
+      <form id="cForm" onsubmit="sendForm(event)" novalidate>
+        <div class="form-row">
+          <div class="field">
+            <label for="fn"><span class="es">Nombre</span><span class="en">Name</span></label>
+            <input type="text" id="fn" name="nombre" required autocomplete="name">
+          </div>
+          <div class="field">
+            <label for="fo"><span class="es">Organización</span><span class="en">Organization</span></label>
+            <input type="text" id="fo" name="org" autocomplete="organization">
+          </div>
+        </div>
+        <div class="field">
+          <label for="fe">Email</label>
+          <input type="email" id="fe" name="email" required autocomplete="email">
+        </div>
+        <div class="field">
+          <label for="fi"><span class="es">Tipo de interés</span><span class="en">Type of interest</span></label>
+          <!-- Spanish select -->
+          <select id="fi" name="interes" class="es">
+            <option value="catalitico">Socio catalítico (DFI / fondo climático / fundación)</option>
+            <option value="plataforma">Socio de plataforma (inversor comercial)</option>
+            <option value="proyecto">Socio de proyecto (técnico / ingeniería)</option>
+            <option value="comunidad">Comunidad de Aysén</option>
+            <option value="media">Medios / investigación</option>
+            <option value="otro">Otro</option>
+          </select>
+          <!-- English select -->
+          <select name="interes" class="en">
+            <option value="catalitico">Catalytic partner (DFI / climate fund / foundation)</option>
+            <option value="plataforma">Platform partner (commercial investor)</option>
+            <option value="proyecto">Project partner (technical / engineering)</option>
+            <option value="comunidad">Aysén community</option>
+            <option value="media">Media / research</option>
+            <option value="otro">Other</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="fm"><span class="es">Mensaje</span><span class="en">Message</span></label>
+          <textarea id="fm" name="mensaje" rows="4"></textarea>
+        </div>
+        <div class="form-success" id="fSuccess">
+          <span class="es">✓ Mensaje recibido — te responderemos a la brevedad.</span>
+          <span class="en">✓ Message received — we will be in touch shortly.</span>
+        </div>
+        <button type="submit" class="btn btn-solid">
+          <span class="es">Enviar mensaje</span>
+          <span class="en">Send message</span>
+        </button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     FOOTER
+═══════════════════════════════════════════════════════════════ -->
+<footer>
+  <div class="foot-inner">
+    <div class="foot-logo">ENLAZA</div>
+    <p class="foot-legal">
+      <span class="es"><strong>Aviso legal:</strong> Este sitio web tiene fines exclusivamente informativos y no constituye una oferta, invitación ni solicitud de inversión, ni asesoría financiera de ningún tipo. Las cifras de impacto y proyecciones financieras son estimaciones preliminares sujetas a cambio y no representan compromisos ni garantías de rendimiento. El Fondo ENLAZA se encuentra en etapa de estructuración; cualquier participación está sujeta a los términos definitivos de los documentos legales correspondientes.</span>
+      <span class="en"><strong>Legal disclaimer:</strong> This website is for informational purposes only and does not constitute an offer, invitation, or solicitation to invest, nor financial advice of any kind. Impact figures and financial projections are preliminary estimates subject to change and do not represent commitments or performance guarantees. The ENLAZA Fund is in its structuring phase; any participation is subject to the definitive terms of the corresponding legal documents.</span>
+    </p>
+    <div class="foot-bottom">
+      <span>© 2026 Fondo ENLAZA · Energía para Aysén</span>
+      <span>Patagonia, Chile</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+// ── Language ──────────────────────────────────────────────
+function setLang(lang) {
+  document.documentElement.classList.toggle('lang-en', lang === 'en');
+  document.getElementById('btnEs').classList.toggle('active', lang !== 'en');
+  document.getElementById('btnEn').classList.toggle('active', lang === 'en');
+  try { localStorage.setItem('enlaza-lang', lang); } catch(e){}
+}
+try { if (localStorage.getItem('enlaza-lang') === 'en') setLang('en'); } catch(e){}
+
+// ── Nav scroll ────────────────────────────────────────────
+const nav = document.getElementById('nav');
+const links = document.getElementById('navLinks');
+window.addEventListener('scroll', () => {
+  nav.classList.toggle('scrolled', scrollY > 40);
+}, {passive:true});
+
+function toggleMenu() { links.classList.toggle('open'); }
+links.querySelectorAll('a').forEach(a => a.addEventListener('click', () => links.classList.remove('open')));
+
+// ── Smooth scroll ─────────────────────────────────────────
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', e => {
+    const t = document.getElementById(a.getAttribute('href').slice(1));
+    if (t) { e.preventDefault(); t.scrollIntoView({behavior:'smooth',block:'start'}); }
+  });
+});
+
+// ── Contact form ──────────────────────────────────────────
+function sendForm(e) {
+  e.preventDefault();
+  const btn = e.target.querySelector('button[type=submit]');
+  btn.disabled = true;
+  btn.style.opacity = '.6';
+  setTimeout(() => {
+    document.getElementById('fSuccess').style.display = 'block';
+    e.target.reset();
+    btn.disabled = false;
+    btn.style.opacity = '';
+  }, 700);
+}
+
+// ── Reduce motion ─────────────────────────────────────────
+if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+  document.querySelectorAll('.hero-line-bar').forEach(el => el.style.animation = 'none');
+}
+</script>
+
+</body></html>
